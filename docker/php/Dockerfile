@@ -10,6 +10,8 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
 # Install system dependencies
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     build-essential \
+    autoconf \
+    pkg-config \
     git \
     curl \
     libpng-dev \
@@ -28,7 +30,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install xdebug
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+RUN printf "\n" | pecl install xdebug-3.1.6 && docker-php-ext-enable xdebug
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
