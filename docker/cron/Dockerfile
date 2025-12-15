@@ -23,13 +23,7 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 WORKDIR /var/www
 
 # Add crontab file in the cron directory
-COPY scheduler /etc/cron.d/scheduler
-
-# Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/scheduler
-
-# Apply the cron jobs
-RUN crontab /etc/cron.d/scheduler
+COPY --chmod=0644 scheduler /etc/cron.d/scheduler
 
 # run cron
 CMD ["cron", "-f"]
