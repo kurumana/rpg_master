@@ -26,4 +26,5 @@ WORKDIR /var/www
 COPY --chmod=0644 scheduler /etc/cron.d/scheduler
 
 # run cron
-ENTRYPOINT ["cron", "-f"]
+ENTRYPOINT ["/usr/sbin/cron"]
+CMD ["-f"]
