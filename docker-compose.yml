@@ -1,4 +1,3 @@
-version: "3.7"
 services:
 
   #PHP Service
@@ -81,7 +80,7 @@ services:
       SERVICE_NAME: mysql
     volumes:
       - dbdata:/var/lib/mysql
-      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - rpg-app-network
 
